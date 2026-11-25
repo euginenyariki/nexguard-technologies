@@ -38,7 +38,7 @@ export type ValidationResult<T> =
   | { ok: true; data: T }
   | { ok: false; error: string; status: number };
 
-export async function readJson<T extends {}>(req: Request): Promise<ValidationResult<T>> {
+export async function readJson<T extends object>(req: Request): Promise<ValidationResult<T>> {
   try {
     const len = Number(req.headers.get("content-length") || 0);
     if (len > MAX_BODY_BYTES) {
